@@ -1,21 +1,22 @@
 //
-//  VShowWebViewController.m
-//  SQFunbox
+//  VShowWeb1Controller.m
+//  PrejectTools
 //
-//  Created by Vols on 15/4/17.
-//  Copyright (c) 2015年 SANQUAN Co. Ltd. All rights reserved.
+//  Created by Vols on 2016/10/25.
+//  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "VShowWebViewController.h"
+#import "VShowWeb1Controller.h"
 
-@interface VShowWebViewController () <UIWebViewDelegate>
+@interface VShowWeb1Controller () <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
+
 @end
 
-@implementation VShowWebViewController
+@implementation VShowWeb1Controller
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -99,6 +100,7 @@
     }
     return _webView;
 }
+
 
 /*
 #pragma mark - Navigation

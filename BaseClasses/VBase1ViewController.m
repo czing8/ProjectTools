@@ -1,18 +1,18 @@
 //
-//  VBaseViewController.m
-//  SQFunbox
+//  VBase1ViewController.m
+//  PrejectTools
 //
-//  Created by Vols on 15/2/13.
-//  Copyright (c) 2015年 Vols. All rights reserved.
+//  Created by Vols on 2016/10/25.
+//  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "VBaseViewController.h"
+#import "VBase1ViewController.h"
 
-@interface VBaseViewController ()
+@interface VBase1ViewController ()
 
 @end
 
-@implementation VBaseViewController
+@implementation VBase1ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,6 +21,7 @@
     
     [self initNavControllerBar];
 }
+
 
 - (void)initNavControllerBar{
     self.navigationItem.titleView = self.titleLabel;
@@ -104,10 +105,21 @@
 
 
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
