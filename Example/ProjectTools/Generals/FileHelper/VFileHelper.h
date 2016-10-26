@@ -27,6 +27,38 @@
 + (NSString *)tmpDirectory;
 
 
+#pragma mark - 根据URL获取文件名
+// 根据文件路径获取文件名称，是否需要后缀
++ (NSString *)fileNameAtPath:(NSString *)path suffix:(BOOL)suffix;
+// 获取文件所在的文件夹路径
++ (NSString *)directoryAtPath:(NSString *)path;
+// 根据文件路径获取文件扩展类型
++ (NSString *)suffixAtPath:(NSString *)path;
+
+#pragma mark - 判断文件(夹)是否存在
+// 判断文件路径是否存在
++ (BOOL)isExistsAtPath:(NSString *)path;
+// 判断路径是否为空(判空条件是文件大小为0，或者是文件夹下没有子文件)
++ (BOOL)isEmptyItemAtPath:(NSString *)path;
+// 判断路径是否为空(错误信息error)
++ (BOOL)isEmptyItemAtPath:(NSString *)path error:(NSError **)error;
+// 判断目录是否是文件夹
++ (BOOL)isDirectoryAtPath:(NSString *)path;
+// 判断目录是否是文件夹(错误信息error)
++ (BOOL)isDirectoryAtPath:(NSString *)path error:(NSError **)error;
+// 判断目录是否是文件
++ (BOOL)isFileAtPath:(NSString *)path;
+// 判断目录是否是文件(错误信息error)
++ (BOOL)isFileAtPath:(NSString *)path error:(NSError **)error;
+// 判断目录是否可以执行
++ (BOOL)isExecutableItemAtPath:(NSString *)path;
+// 判断目录是否可读
++ (BOOL)isReadableItemAtPath:(NSString *)path;
+// 判断目录是否可写
++ (BOOL)isWritableItemAtPath:(NSString *)path;
+
+
+
 #pragma mark - 创建文件(夹)
 // 创建文件夹
 + (BOOL)createDirectoryAtPath:(NSString *)path;
@@ -87,35 +119,6 @@
 // 移动文件，是否覆盖(错误信息error)
 + (BOOL)moveItemAtPath:(NSString *)path toPath:(NSString *)toPath overwrite:(BOOL)overwrite error:(NSError **)error;
 
-#pragma mark - 根据URL获取文件名
-// 根据文件路径获取文件名称，是否需要后缀
-+ (NSString *)fileNameAtPath:(NSString *)path suffix:(BOOL)suffix;
-// 获取文件所在的文件夹路径
-+ (NSString *)directoryAtPath:(NSString *)path;
-// 根据文件路径获取文件扩展类型
-+ (NSString *)suffixAtPath:(NSString *)path;
-
-#pragma mark - 判断文件(夹)是否存在
-// 判断文件路径是否存在
-+ (BOOL)isExistsAtPath:(NSString *)path;
-// 判断路径是否为空(判空条件是文件大小为0，或者是文件夹下没有子文件)
-+ (BOOL)isEmptyItemAtPath:(NSString *)path;
-// 判断路径是否为空(错误信息error)
-+ (BOOL)isEmptyItemAtPath:(NSString *)path error:(NSError **)error;
-// 判断目录是否是文件夹
-+ (BOOL)isDirectoryAtPath:(NSString *)path;
-// 判断目录是否是文件夹(错误信息error)
-+ (BOOL)isDirectoryAtPath:(NSString *)path error:(NSError **)error;
-// 判断目录是否是文件
-+ (BOOL)isFileAtPath:(NSString *)path;
-// 判断目录是否是文件(错误信息error)
-+ (BOOL)isFileAtPath:(NSString *)path error:(NSError **)error;
-// 判断目录是否可以执行
-+ (BOOL)isExecutableItemAtPath:(NSString *)path;
-// 判断目录是否可读
-+ (BOOL)isReadableItemAtPath:(NSString *)path;
-// 判断目录是否可写
-+ (BOOL)isWritableItemAtPath:(NSString *)path;
 
 #pragma mark - 获取文件(夹)大小
 // 获取目录大小
