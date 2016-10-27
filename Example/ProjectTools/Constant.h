@@ -21,6 +21,6 @@
 #define kCustomizedHandlerURL   @"http://newsmag.hibor.com.cn/MobilePhone/GetCustomizedHandler.ashx"
 
 
-
+#define kCommonMiddleTextFont      [UIFont systemFontOfSize:14]
 
 #endif /* Constant_h */
