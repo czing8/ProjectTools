@@ -11,7 +11,6 @@
 @implementation UIColor (Extends)
 
 
-
 + (UIColor *)randomColor {
     
     CGFloat hue = ( arc4random() % 256 / 256.0 );

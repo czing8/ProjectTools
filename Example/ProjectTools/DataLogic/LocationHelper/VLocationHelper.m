@@ -6,19 +6,19 @@
 //  Copyright (c) 2015年 Vols. All rights reserved.
 //
 
-#import "VLocationManager.h"
+#import "VLocationHelper.h"
 
-@interface VLocationManager ()
+@interface VLocationHelper ()
 
 @property (nonatomic, copy) CompletionBlock completionBlock;
 @property (nonatomic, copy) FailBlock failBlock;
 
 @end
 
-@implementation VLocationManager
+@implementation VLocationHelper
 
 +(id)sharedInstance{
-    static VLocationManager *instance = nil;
+    static VLocationHelper *instance = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{

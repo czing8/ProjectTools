@@ -1,15 +1,29 @@
 //
-//  UIImage+Blur.m
-//  卡片切换效果
+//  UIImage+Extension.m
+//  NavController
 //
-//  Created by skma on 16/3/2.
-//  Copyright © 2016年 skma. All rights reserved.
+//  Created by Vols on 15/8/11.
+//  Copyright (c) 2015年 Vols. All rights reserved.
 //
 
-#import "UIImage+Blur.h"
+#import "UIImage+Extension.h"
 #import <Accelerate/Accelerate.h>
 
-@implementation UIImage (Blur)
+@implementation UIImage (Extension)
+
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return theImage;
+}
+
 
 // 图片模糊方法
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur {
@@ -71,7 +85,7 @@
     free(pixelBuffer);
     CFRelease(inBitmapData);
     
-//    CGColorSpaceRelease(colorSpace);//**********
+    //    CGColorSpaceRelease(colorSpace);//**********
     CGImageRelease(imageRef);
     
     return returnImage;
@@ -81,11 +95,11 @@
 
 // 模糊图片方法
 + (UIImage *)coreBlurImage:(UIImage *)image
-           withBlurNumber:(CGFloat)blur {
+            withBlurNumber:(CGFloat)blur {
     
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage  *inputImage=[CIImage imageWithCGImage:image.CGImage];
-
+    
     CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [filter setValue:inputImage forKey:kCIInputImageKey];
     [filter setValue:@(blur) forKey: @"inputRadius"];
@@ -96,7 +110,6 @@
     CGImageRelease(outImage);
     return blurImage;
 }
-
 
 
 @end
