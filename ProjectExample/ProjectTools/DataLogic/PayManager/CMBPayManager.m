@@ -6,8 +6,8 @@
 //  Copyright © 2016年 HaierSmart. All rights reserved.
 //
 
-#import "HSCMBPayManager.h"
+#import "CMBPayManager.h"
 
-@implementation HSCMBPayManager
+@implementation CMBPayManager
 
 @end

@@ -1,5 +1,5 @@
 //
-//  UIImage+Extension.h
+//  UIImage+VAdd.h
 //  NavController
 //
 //  Created by Vols on 15/8/11.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (Extension)
+@interface UIImage (VAdd)
 
 /**
  * 根据颜色生成尺寸为size的图片

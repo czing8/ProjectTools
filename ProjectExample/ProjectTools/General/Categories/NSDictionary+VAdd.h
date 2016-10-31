@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (Extension)
+@interface NSDictionary (VAdd)
 
 - (NSString *)urlEncodedKeyValueString;
 

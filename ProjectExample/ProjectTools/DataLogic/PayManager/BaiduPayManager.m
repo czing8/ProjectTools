@@ -6,8 +6,8 @@
 //  Copyright © 2016年 HaierSmart. All rights reserved.
 //
 
-#import "HSBaiduPayManager.h"
+#import "BaiduPayManager.h"
 
-@implementation HSBaiduPayManager
+@implementation BaiduPayManager
 
 @end

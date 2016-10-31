@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "UIColor+Extends.h"
+#import "UIColor+VAdd.h"
 
-@implementation UIColor (Extends)
+@implementation UIColor (VAdd)
 
 
 + (UIColor *)randomColor {

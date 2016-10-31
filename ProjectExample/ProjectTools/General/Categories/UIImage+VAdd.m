@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Vols. All rights reserved.
 //
 
-#import "UIImage+Extension.h"
+#import "UIImage+VAdd.h"
 #import <Accelerate/Accelerate.h>
 
-@implementation UIImage (Extension)
+@implementation UIImage (VAdd)
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
     CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);

@@ -1,13 +1,18 @@
 //
-//  VCacheHelper.h
-//  ProjectTools
+//  VCacheManager.h
+//  CacheManagerDemo
 //
-//  Created by Vols on 2016/10/31.
-//  Copyright © 2016年 Vols. All rights reserved.
+//  Created by Vols on 15/4/15.
+//  Copyright (c) 2015年 Vols. All rights reserved.
 //
+
 
 #import <Foundation/Foundation.h>
 
 @interface VCacheHelper : NSObject
+
++ (void)saveCache:(id)cache key:(NSString *)key;
++ (BOOL)hasCache:(NSString *)key;
++ (id)getCache:(NSString *)key;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "NSDictionary+Extension.h"
+#import "NSDictionary+VAdd.h"
 #import "NSString+VAdd.h"
 
 @implementation NSDictionary (Extension)

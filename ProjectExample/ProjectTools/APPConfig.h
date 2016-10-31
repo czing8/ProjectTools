@@ -9,5 +9,17 @@
 #ifndef APPConfig_h
 #define APPConfig_h
 
+/**
+ *  百度地图
+ */
+#define BMap_APP_Key @" "
+
+
+/**
+ *  友盟
+ */
+#define UMeng_APP_Key @" "
+
+
 
 #endif /* APPConfig_h */

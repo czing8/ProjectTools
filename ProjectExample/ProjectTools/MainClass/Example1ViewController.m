@@ -7,6 +7,7 @@
 //
 
 #import "Example1ViewController.h"
+#import "UIColor+VAdd.h"
 
 @interface Example1ViewController ()
 
@@ -16,8 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor randomColor];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

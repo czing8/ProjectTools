@@ -12,7 +12,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#import "HSKeyChain.h"
+#import "VKeyChain.h"
 #import <UIKit/UIKit.h>
 
 
@@ -262,18 +262,18 @@ static NSString * const KEY_DEVICEID    = @"com.haierSmart.app.deviceid";
 
 + (NSString *)readDeviceID {
     
-    NSString * uid = [HSKeyChain load:KEY_DEVICEID];
+    NSString * uid = [VKeyChain load:KEY_DEVICEID];
     return uid;
 }
 
 
 + (void)storeDeviceID{
     NSString *UUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    [HSKeyChain save:KEY_DEVICEID data:UUID];
+    [VKeyChain save:KEY_DEVICEID data:UUID];
 }
 
 + (void)deleteDeviceID {
-    [HSKeyChain delete:KEY_DEVICEID];
+    [VKeyChain delete:KEY_DEVICEID];
 }
 
 

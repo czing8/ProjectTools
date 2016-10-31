@@ -7,7 +7,7 @@
 //
 
 #import "VHUDHelper.h"
-#import "NSString+Extension.h"
+#import "NSString+VAdd.h"
 
 
 @implementation VHUDHelper

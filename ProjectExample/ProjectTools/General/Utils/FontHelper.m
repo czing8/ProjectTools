@@ -8,7 +8,7 @@
 
 #import "FontHelper.h"
 
-#import "UIDevice+Expand.h"
+#import "UIDevice+VAdd.h"
 
 @implementation FontHelper
 

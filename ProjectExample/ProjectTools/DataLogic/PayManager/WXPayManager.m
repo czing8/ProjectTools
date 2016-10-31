@@ -6,8 +6,8 @@
 //  Copyright © 2016年 HaierSmart. All rights reserved.
 //
 
-#import "HSWXPayManager.h"
+#import "WXPayManager.h"
 
-@implementation HSWXPayManager
+@implementation WXPayManager
 
 @end

@@ -1,5 +1,5 @@
 //
-//  NSString+Extension.h
+//  NSString+VAdd.h
 //  HBDemo
 //
 //  Created by hibor on 16/10/28.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Extension)
+@interface NSString (VAdd)
 
 + (BOOL)isEmpty:(NSString *)string;
 

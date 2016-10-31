@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HSWXPayManager : NSObject
+@interface WXPayManager : NSObject
 
 @end

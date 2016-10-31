@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Login_RegisterRequest : NSObject
+@interface LoginRegisterRequest : NSObject
 
 + (void)login:(LoginEntity *)param succ:(void(^)())succ fail:(void(^)(int code, NSString * msg))fail;
 

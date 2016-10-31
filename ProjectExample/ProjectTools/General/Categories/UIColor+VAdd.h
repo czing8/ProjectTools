@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (Extends)
+@interface UIColor (VAdd)
 
 
 + (UIColor *)randomColor;

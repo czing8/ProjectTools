@@ -6,8 +6,14 @@
 //  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "Login&RegisterRequest.h"
+#import "LoginRegisterRequest.h"
 
-@implementation Login_RegisterRequest
+@implementation LoginRegisterRequest
+
++ (void)login:(LoginEntity *)param succ:(void(^)())succ fail:(void(^)(int code, NSString * msg))fail{
+
+
+
+}
 
 @end

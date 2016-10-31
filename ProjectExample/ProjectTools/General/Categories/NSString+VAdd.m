@@ -6,10 +6,10 @@
 //  Copyright © 2016年 Vols. All rights reserved.
 //
 
-#import "NSString+Extension.h"
+#import "NSString+VAdd.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (Extension)
+@implementation NSString (VAdd)
 
 + (BOOL)isEmpty:(NSString *)string {
     return string == nil || string.length == 0;
