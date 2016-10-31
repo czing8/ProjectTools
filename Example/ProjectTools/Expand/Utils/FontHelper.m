@@ -8,7 +8,7 @@
 
 #import "FontHelper.h"
 
-#import "IOSDeviceConfig.h"
+#import "UIDevice+Expand.h"
 
 @implementation FontHelper
 
@@ -68,16 +68,12 @@ static FontHelper *_sharedInstance = nil;
 #endif
 }
 
-- (id)init
-{
-    if (self = [super init])
-    {
-        if ([IOSDeviceConfig sharedConfig].isIPad)
-        {
+- (id)init {
+    if (self = [super init]) {
+        if ([UIDevice currentDevice].isPad)  {
             [self configIPadFonts];
         }
-        else
-        {
+        else {
             [self configIPhoneFonts];
         }
     }

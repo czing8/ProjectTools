@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#import "VDeviceHelper.h"
+#import "DataCenter.h"
+
 @interface ViewController ()
 
 @end
@@ -16,7 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+ 
+    NSLog(@"%ld", (long)[VDeviceHelper shared].processorSpeed);
+    NSLog(@"%@", [VDeviceHelper shared].machineModelName);
+    
 }
 
 
@@ -24,6 +30,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 @end

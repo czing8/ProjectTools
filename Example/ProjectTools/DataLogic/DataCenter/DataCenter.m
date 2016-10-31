@@ -73,7 +73,6 @@ static DataCenter *_sharedInstance = nil;
 }
 
 
-
 - (DataConfig *)localConfig {
     return _host.loginEntity.config;
 }

@@ -14,7 +14,7 @@
 /**
  *  一般操作成功回调
  */
-typedef void (^TIMSucc)();
+typedef void (^Succ)();
 
 /**
  *  操作失败回调
@@ -22,12 +22,12 @@ typedef void (^TIMSucc)();
  *  @param code 错误码
  *  @param msg  错误描述，配合错误码使用，如果问题建议打印信息定位
  */
-typedef void (^TIMFail)(int code, NSString * msg);
+typedef void (^Fail)(int code, NSString * msg);
 
 /**
  *  登陆成功回调
  */
-typedef void (^TIMLoginSucc)();
+typedef void (^LoginSucc)();
 
 /**
  *  获取资源
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, VNetworkType) {
 // 初始化新增的缓存同步逻辑
 
 // 退出
-- (void)logout:(TIMLoginSucc)succ fail:(TIMFail)fail;
+- (void)logout:(LoginSucc)succ fail:(Fail)fail;
 
 // 被踢下线后，再重新登录
 - (void)offlineLogin;
