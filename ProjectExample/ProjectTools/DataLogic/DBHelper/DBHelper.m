@@ -8,7 +8,7 @@
 
 #import "DBHelper.h"
 
-NSString * const DBFile = @"haiersmart.db";
+NSString * const DBFile = @"vols.db";
 
 @implementation DBHelper
 
@@ -23,12 +23,12 @@ NSString * const DBFile = @"haiersmart.db";
 }
 
 
-- (id)init{
+- (instancetype)init {
     if (self = [super init]) {
         NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         _dbPath = [docPath stringByAppendingPathComponent:DBFile];
-        
         _dbQueue =  [FMDatabaseQueue databaseQueueWithPath:_dbPath];
+        VLog(@"DBPath --> %@", _dbPath);
     }
     return self;
 }

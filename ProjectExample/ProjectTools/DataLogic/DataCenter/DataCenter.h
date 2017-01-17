@@ -4,37 +4,21 @@
 //
 //  Created by hibor on 16/10/28.
 //  Copyright © 2016年 Vols. All rights reserved.
-//
+//  业务逻辑入口
 
 #import <Foundation/Foundation.h>
-#import "HostEntity.h"
+#import "UserEntity.h"
+#import "LoginEntity.h"
 #import "DataConfig.h"
 
 
-/**
- *  一般操作成功回调
- */
-typedef void (^Succ)();
+typedef void (^SuccBlock)();
+typedef void (^FailBlock)(NSString * msg, NSUInteger code);
 
 /**
- *  操作失败回调
- *
- *  @param code 错误码
- *  @param msg  错误描述，配合错误码使用，如果问题建议打印信息定位
+ *  获取二进制
  */
-typedef void (^Fail)(int code, NSString * msg);
-
-/**
- *  登陆成功回调
- */
-typedef void (^LoginSucc)();
-
-/**
- *  获取资源
- *
- *  NSData 资源二进制
- */
-typedef void (^TIMGetResourceSucc)(NSData * data);
+typedef void (^GetResourceSucc)(NSData * data);
 
 typedef NS_ENUM(NSInteger, VNetworkType) {
     kNetworkType_Undefine = -1,
@@ -43,42 +27,51 @@ typedef NS_ENUM(NSInteger, VNetworkType) {
     kNetworkType_ReachableViaWWAN = 2,
 };
 
-// 业务逻辑入口
 @interface DataCenter : NSObject
 
-@property (nonatomic, readonly) HostEntity  *host;    // 当前用户
-@property (nonatomic, assign)   BOOL        isConnected;     // 当前是否连接上，外部可用此方法判断是否有网
-
-// 当前使用的网络类型，默认wifi，只取VNetworkType 中对应的 -1:未知 0:无网 1:wifi 2:移动网，用户若需要，可重写对应的方法以满足自身App需求
+@property (nonatomic, assign)   BOOL        isAutoLogin;    // 启动时是否自动登录
+@property (nonatomic, assign)   BOOL        isConnected;
 @property (nonatomic, readonly) VNetworkType networkType;
 
+@property (nonatomic, readonly) UserEntity  *host;           // 当前用户
+@property (nonatomic, readonly) LoginEntity *loginParam;     // 自动登录信息
 
-@property (nonatomic, assign)   BOOL        isAutoLogin;     // 是否自动登录
 
 
-+ (instancetype)configWith:(DataConfig *)cfg;
 
 + (instancetype)shared;
++ (instancetype)configWith:(DataConfig *)cfg;
+
+
+#pragma mark - login & Logout
+- (void)login:(LoginEntity *)param succ:(SuccBlock)succ fail:(FailBlock)fail;
+- (void)logout:(SuccBlock)succ fail:(FailBlock)fail;
+
+
 
 
 - (DataConfig *)localConfig;
 
+
+- (void)loadFromLocal;
 - (void)saveToLocal;
+
+
+
+
 
 // 初始化新增的缓存同步逻辑
 
-// 退出
-- (void)logout:(LoginSucc)succ fail:(Fail)fail;
 
 // 被踢下线后，再重新登录
-- (void)offlineLogin;
+//- (void)offlineLogin;
 
-- (void)configHost:(LoginEntity *)param completion:(void(^)())block;
+//- (void)configHost:(LoginEntity *)param completion:(void(^)())block;
 
-- (void)changeToNetwork:(VNetworkType)work;
+//- (void)changeToNetwork:(VNetworkType)work;
 
 
 
-- (void)configLoginSucc:(LoginEntity *)param completion:(void(^)())block;
+//- (void)configLoginSucc:(LoginEntity *)param completion:(void(^)())block;
 
 @end

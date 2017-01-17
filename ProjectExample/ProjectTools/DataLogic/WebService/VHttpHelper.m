@@ -2,8 +2,8 @@
 //  VHttpHelper.m
 //  ProjectTools
 //
-//  Created by hibor on 16/10/28.
-//  Copyright © 2016年 Vols. All rights reserved.
+//  Created by Vols on 15/10/28.
+//  Copyright © 2015年 Vols. All rights reserved.
 //
 
 #import "VHttpHelper.h"

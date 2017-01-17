@@ -11,9 +11,4 @@
 
 @implementation CartDao
 
-
-+ (void)insertFavourite{
-
-}
-
 @end

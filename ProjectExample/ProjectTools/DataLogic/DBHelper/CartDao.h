@@ -6,11 +6,12 @@
 //  Copyright © 2016年 HaierSmart. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /**
  *  购物车本地数据存储
  */
+#import <Foundation/Foundation.h>
+
+
 @interface CartDao : NSObject
 
 @end

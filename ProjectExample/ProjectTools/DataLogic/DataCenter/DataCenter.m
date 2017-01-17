@@ -40,15 +40,20 @@
     return _sharedInstance;
 }
 
+#pragma mark - login & Logout
 
-+ (BOOL)isAutoLogin {
-    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kAutoLogin_Key];
-    return [num boolValue];
+- (void)login:(LoginEntity *)param succ:(SuccBlock)succ fail:(FailBlock)fail {
+    if (!param) return;
+    
+    //处理登录逻辑
 }
 
-+ (void)setAutoLogin:(BOOL)autologin {
-    [[NSUserDefaults standardUserDefaults] setObject:@(autologin) forKey:kAutoLogin_Key];
+- (void)logout:(SuccBlock)succ fail:(FailBlock)fail {
+    // 处理退出逻辑
+    
 }
+
+
 
 
 - (void)changeToNetwork:(VNetworkType)work {
@@ -72,25 +77,25 @@
 }
 
 
-- (DataConfig *)localConfig {
-    return _host.loginEntity.config;
-}
+//- (DataConfig *)localConfig {
+//    return _host.loginEntity.config;
+//}
 
-- (void)configHost:(LoginEntity *)param completion:(void (^)())block {
-    if (!_host)  {
-        _host = [[HostEntity alloc] init];
-    }
-    _host.loginEntity = param;
-    [_host asyncProfile];
-
-}
+//- (void)configHost:(LoginEntity *)param completion:(void (^)())block {
+//    if (!_host)  {
+//        _host = [[HostEntity alloc] init];
+//    }
+//    _host.loginEntity = param;
+//    [_host asyncProfile];
+//
+//}
 
 
 
 
 - (void)configLoginSucc:(LoginEntity *)param completion:(void(^)())block {
     // 配置, 获取个人名片
-    [self configHost:param completion:block];
+//    [self configHost:param completion:block];
     
     // 获取好友列表
     //不能在登录成功之后获取好友里表，需要在OnProxyStatusChange回调成功的时候获取好友列表，否则可能获取不到
@@ -106,6 +111,15 @@
 }
 
 
+#pragma mark - setter/getter
+- (BOOL)isAutoLogin {
+    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kAutoLogin_Key];
+    return [num boolValue];
+}
+
+- (void)setAutoLogin:(BOOL)autologin {
+    [[NSUserDefaults standardUserDefaults] setObject:@(autologin) forKey:kAutoLogin_Key];
+}
 
 
 

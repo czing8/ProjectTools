@@ -1,5 +1,8 @@
-platform :ios, “8.0”
+platform :ios, "8.0"
 
-pod "AFNetworking"
-pod "Masonry"
-pod "FMDB"
+pod 'AFNetworking'
+pod 'Masonry'
+pod 'FMDB'
+pod 'SDWebImage'
+pod 'MBProgressHUD', '~> 1.0.0'
+

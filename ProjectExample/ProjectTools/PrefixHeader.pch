@@ -2,8 +2,8 @@
 //  PrefixHeader.pch
 //  PrejectTools
 //
-//  Created by Vols on 2016/10/25.
-//  Copyright © 2016年 Vols. All rights reserved.
+//  Created by Vols on 2014/10/25.
+//  Copyright © 2014年 Vols. All rights reserved.
 //
 
 #ifndef PrefixHeader_pch
@@ -18,5 +18,8 @@
 #import "ARCCompile.h"
 #import "DataCenter.h"
 #import "VHUDHelper.h"
+
+#import "UIColor+VAdd.h"
+
 
 #endif /* PrefixHeader_pch */
