@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, LoadWebType) {
     self.navigationItem.rightBarButtonItem = refreshBtn;
 
     [self.view addSubview:self.wkWebView];
-    [self.view addSubview:self.progressView];
+    [self.wkWebView addSubview:self.progressView];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [self.wkWebView loadRequest:request];
@@ -201,7 +201,7 @@ typedef NS_ENUM(NSUInteger, LoadWebType) {
 - (UIProgressView *)progressView {
     if (_progressView == nil) {
         _progressView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
-        _progressView.frame = CGRectMake(0, 64, self.view.bounds.size.width, 2);
+        _progressView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 2);
         [_progressView setTrackTintColor:[UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0]];
         _progressView.progressTintColor = [UIColor greenColor];
     }

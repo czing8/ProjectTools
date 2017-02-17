@@ -18,6 +18,7 @@
 
 
 @implementation VHttpHelper
+
 + (id)shared {
     
     static VHttpHelper *_sharedClient = nil;
@@ -32,17 +33,16 @@
 
 - (void)post:(NSDictionary *)data path:(NSString *)path success:(SuccessBlock)success failue:(FailureBlock)failure{
     
-    NSString * hostURL = kCustomizedHandlerURL;
-    if (path.length > 0)    hostURL = path;
-    
+    NSString * hostURL = kBaseURL;
     NSMutableDictionary * params = [self handleParamsDic:data];
     
     AFHTTPSessionManager *manager = [VHttpHelper managerWithBaseURL:hostURL sessionConfiguration:NO];
     
-    NSLog(@"request path: %@, parameters --> %@", path, params);
+    VLog(@"request path: %@, parameters --> %@", path, params);
     
     [manager POST:path parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        VLog(@"request--> %@, responseObject --> %@", path, responseObject);
+
         if (responseObject == nil)
             success(@{@"code":@"-100",@"message":@"没有返回数据，可能服务器错误"});
         else
@@ -50,24 +50,25 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
-        NSLog(@"error --> %@", error);
+        VLog(@"error --> %@", error);
     }];
 }
 
 
-- (void)get:(NSDictionary *)data path:(NSString *)path success:(SuccessBlock)success failue:(FailureBlock)failure{
+- (void)get:(NSDictionary *)data path:(NSString *)path success:(SuccessBlock)success failue:(FailureBlock)failure {
     
-    NSString * hostURL = kCustomizedHandlerURL;
-    if (path.length > 0)    hostURL = path;
+    NSString * hostURL = kBaseURL;
     
     NSMutableDictionary * params = [self handleParamsDic:data];
     
     AFHTTPSessionManager *manager = [VHttpHelper managerWithBaseURL:hostURL sessionConfiguration:NO];
     
-    NSLog(@"request path: %@, parameters --> %@", path, params);
+    VLog(@"request path: %@, parameters --> %@", path, params);
     
-    [manager GET:path parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
+    [manager GET:path parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        VLog(@"response.URL --> %@", task.response.URL);
+        VLog(@"request--> %@, responseObject --> %@", path, responseObject);
+
          if (responseObject == nil)
              success(@{@"code":@"-100",@"message":@"没有返回数据，可能服务器错误"});
          else
@@ -75,12 +76,12 @@
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          failure(error);
-         NSLog(@"error --> %@", error);
+         VLog(@"error --> %@", error);
      }];
 }
 
 
-- (NSURLSessionDownloadTask *)down:(NSString *)downURL percent:(PercentBlock)percent success:(void (^)(id, id))success failue:(FailureBlock)failure{
+- (NSURLSessionDownloadTask *)down:(NSString *)downURL percent:(PercentBlock)percent success:(void (^)(id, id))success failue:(FailureBlock)failure {
     
     AFHTTPSessionManager *manager = [VHttpHelper managerWithBaseURL:nil sessionConfiguration:YES];
     
@@ -110,7 +111,6 @@
 }
 
 
-
 - (void)cancel{
     [_downloadTask cancel];
 }
@@ -118,7 +118,7 @@
 
 
 #pragma mark - Private
-//处理请求参数，参加公共参数
+// 处理请求参数，参加公共参数
 - (NSMutableDictionary *)handleParamsDic:(NSDictionary *)dic{
     
     if (dic == nil) {

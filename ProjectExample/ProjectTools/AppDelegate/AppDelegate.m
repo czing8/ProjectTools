@@ -40,29 +40,19 @@
 }
 
 
-//配置app控件全局外观
+// 配置app控件全局外观
 - (void)configAppearance {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor blueColor]];
     
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor whiteColor];
-    shadow.shadowOffset = CGSizeMake(0, 0);
-    [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                                           NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                           NSShadowAttributeName:shadow,
-                                                           NSFontAttributeName:[UIFont systemFontOfSize:16]
-                                                           }];
-    
-    [[UILabel appearance] setBackgroundColor:[UIColor clearColor]];
-    [[UILabel appearance] setTextColor:[UIColor grayColor]];
-    
-    
-    [[UIButton appearance] setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    
-    [[UITextField appearance] setTintColor:[UIColor orangeColor]];//设置UITextField的光标颜色
-    [[UITextView appearance] setTintColor:[UIColor orangeColor]];//设置UITextView的光标颜色
-    [[UISearchBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:0 barMetrics:UIBarMetricsDefault];
+//    NSShadow *shadow = [[NSShadow alloc] init];
+//    shadow.shadowColor = [UIColor whiteColor];
+//    shadow.shadowOffset = CGSizeMake(0, 0);
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{
+//                                                           NSForegroundColorAttributeName:[UIColor blueColor],
+//                                                           NSShadowAttributeName:shadow,
+//                                                           NSFontAttributeName:[UIFont systemFontOfSize:16]
+//                                                           }];    
 }
 
 //配置app参数，三方sdk参数
@@ -74,10 +64,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     [self configAppearance];
-
     [self configAppLaunch];
 //    [self enterLoginUI];      //必须登录的，走这一步，登录完成后 调用enterMainUI；
     [self enterMainUI];

@@ -14,5 +14,4 @@
 @property (nonatomic, readonly) BOOL      enableConsoleLog;   // 是否支持后台打印
 @property (nonatomic, readonly) NSInteger logLevel;           // 日志级别
 
-
 @end

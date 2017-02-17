@@ -15,16 +15,14 @@ typedef void (^PercentBlock)(float percent);
 
 @interface VHttpHelper : NSObject
 
-
 + (id)shared;
 
-#pragma
+
 - (void)post:(NSDictionary *)data path:(NSString *)path success:(SuccessBlock)success failue:(FailureBlock)failure;
 - (void)get:(NSDictionary *)data path:(NSString *)path success:(SuccessBlock)success failue:(FailureBlock)failure;
 
 - (NSURLSessionDownloadTask *)down:(NSString *)URL percent:(PercentBlock)percent success:(void(^)(id flag, id filePath))success failue:(FailureBlock)failure;
 
 - (void)cancel;
-
 
 @end

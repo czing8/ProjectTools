@@ -10,7 +10,9 @@
 
 @interface VShowWeb1Controller : VBase1ViewController
 
-@property (nonatomic, strong) NSString *theTitle;
-@property (nonatomic, strong) NSString *theURL;
+@property (nonatomic, strong) NSString * theTitle;
+@property (nonatomic, strong) NSString * theURL;
+
+@property (nonatomic, assign) BOOL     backButtonHidden;
 
 @end

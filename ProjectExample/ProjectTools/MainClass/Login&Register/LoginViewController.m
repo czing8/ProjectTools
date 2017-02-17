@@ -8,12 +8,11 @@
 
 #import "LoginViewController.h"
 #import "LoginEntity.h"
-#import "LoginHandler.h"
+#import "LoginRequest.h"
 #import "AppDelegate.h"
 
-@interface LoginViewController ()
-{
-    LoginEntity               *_loginParam;
+@interface LoginViewController () {
+    LoginEntity *_loginParam;
 
 }
 @end
@@ -36,22 +35,21 @@
     }
     else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self displayUIs];
+            [self configureViews];
         });
     }
 }
 
-
-- (void)displayUIs {
-    //界面
+// 界面
+- (void)configureViews {
+    
 }
 
 
 - (void)autoLogin {
     if ([_loginParam isExpired]) {
-        [[VHUDHelper shared] loading:@"刷新票据。。。"];
-        //刷新票据
-        //        [[TLSHelper getInstance] TLSRefreshTicket:_loginParam.identifier andTLSRefreshTicketListener:self];
+        [[VHUDHelper shared] loading:@"刷新。。。"];
+
     }
     else {
         [self loginOperation];
@@ -73,33 +71,20 @@
     __weak LoginViewController *weakSelf = self;
     [[VHUDHelper shared] loading:@"正在登录"];
     
-    [LoginHandler login:_loginParam succ:^{
+    [LoginRequest login:_loginParam succ:^{
         [[VHUDHelper shared] stopLoading:@"登录成功"];
         [weakSelf enterMainUI];
 
     } fail:^(int code, NSString *msg) {
         [[VHUDHelper shared] stopLoading:msg delay:2 completion:^{
-            [weakSelf displayUIs];
+            [weakSelf configureViews];
         }];
     }];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

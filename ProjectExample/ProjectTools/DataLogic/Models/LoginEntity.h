@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "DataConfig.h"
 
-
 /**
  *  登录前的处理，登录后的数据存到UserEntity中
  */

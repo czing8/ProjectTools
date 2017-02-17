@@ -17,11 +17,13 @@ typedef void (^CallBackBlock)(void);
 @property (nonatomic, readwrite, copy) CallBackBlock dissmissCallBack;
 @property (nonatomic, readwrite, copy) CallBackBlock popCallBack;
 
-- (void)setNavBackBarButton;
+
+- (void)initData;
+- (void)configureViews;
+
 
 - (void)setLeftBarButtonWithImage:(NSString *)imageStr;
 - (void)setRightBarButtonWithImage:(NSString *)imageStr;
-
 
 - (void)leftBarButtonClicked:(UIButton *)button;
 - (void)rightBarButtonClicked:(UIButton *)button;

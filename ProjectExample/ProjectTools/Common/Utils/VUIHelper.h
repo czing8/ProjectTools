@@ -44,4 +44,9 @@
 + (UITextField *)textFieldWithPlaceholder:(NSString *)placeholder fontSize:(CGFloat)size;
 
 
+#pragma mark - TextField
+
++ (UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image highImage:(UIImage *)highImage target:(id)target action:(SEL)action;
+
+
 @end

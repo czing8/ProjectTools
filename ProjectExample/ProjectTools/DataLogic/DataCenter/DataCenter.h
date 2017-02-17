@@ -33,8 +33,8 @@ typedef NS_ENUM(NSInteger, VNetworkType) {
 @property (nonatomic, assign)   BOOL        isConnected;
 @property (nonatomic, readonly) VNetworkType networkType;
 
-@property (nonatomic, readonly) UserEntity  *host;           // 当前用户
-@property (nonatomic, readonly) LoginEntity *loginParam;     // 自动登录信息
+@property (nonatomic, strong) UserEntity  *host;           // 当前用户
+@property (nonatomic, strong) LoginEntity *loginParam;     // 自动登录信息
 
 
 

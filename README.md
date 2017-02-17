@@ -1,2 +1,2 @@
 # ProjectTools
-各种项目工具
+各种项目工具：数据库操作Helper类，网络请求Helper类等各种Helper，数据中心DataCenter，基类BaseClass，以及一些经常用到的UI通用模块。
