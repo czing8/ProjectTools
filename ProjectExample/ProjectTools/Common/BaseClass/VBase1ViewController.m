@@ -20,6 +20,7 @@
     NSLog(@"%@ ---> release释放成功", NSStringFromClass([self class]));
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

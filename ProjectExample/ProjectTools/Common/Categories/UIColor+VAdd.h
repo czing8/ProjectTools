@@ -13,6 +13,16 @@
 
 #define kRGBHex(rgbValue)   [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
+typedef struct
+{
+    CGFloat r;
+    CGFloat g;
+    CGFloat b;
+    CGFloat a;
+}RGBA;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (VAdd)
 
 + (UIColor *)randomColor;
@@ -20,6 +30,15 @@
 + (UIColor *)colorWithHex:(int)hexValue;
 + (UIColor *)colorWithHex:(int)hexValue alpha:(CGFloat)alpha;
 + (UIColor *)colorWithHexString:(NSString *)hexStr;
+
+/**
+ *  获取UIColor对象的RGBA值
+ *
+ *  @param color UIColor
+ *
+ *  @return RGBA
+ */
+RGBA RGBAFromUIColor(UIColor * color);
 
 @end
 
@@ -58,3 +77,6 @@
 + (UIColor *)flatDarkGrayColor;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

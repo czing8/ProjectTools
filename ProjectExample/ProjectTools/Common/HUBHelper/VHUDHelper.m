@@ -29,36 +29,6 @@
     return _sharedClient;
 }
 
-- (void)tipMessage:(NSString *)msg {
-    [self tipMessage:msg delay:2 completion:nil];
-}
-
-- (void)tipMessage:(NSString *)msg delay:(CGFloat)seconds {
-    [self tipMessage:msg delay:seconds completion:nil];
-}
-
-- (void)tipMessage:(NSString *)msg delay:(CGFloat)seconds completion:(void (^)())completion
-{
-    if ([self isEmpty:msg]) return;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.label.text = msg;
-        hud.label.textColor = [UIColor whiteColor];
-        hud.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.userInteractionEnabled = NO;
-        
-        [hud hideAnimated:YES afterDelay:seconds];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion();
-            }
-        });
-    });
-}
 
 
 
@@ -92,7 +62,6 @@
 
 
 
-
 - (void)stopLoading {
     [self stopLoading:nil delay:1 completion:nil];
 }
@@ -101,22 +70,72 @@
     [self stopLoading:msg delay:1 completion:nil];
 }
 
+- (void)stopLoading:(NSString *)msg completion:(void (^)())completion {
+    [self stopLoading:msg delay:1 completion:completion];
+}
+
 - (void)stopLoading:(NSString *)msg delay:(CGFloat)seconds completion:(void (^)())completion{
-    _theHUD.tag--;
     
-    if (_theHUD.tag > kHUDBaseTag) {
-        if (![self isEmpty:msg]) {
-            _theHUD.label.text = msg;
-            _theHUD.mode = MBProgressHUDModeText;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+        _theHUD.tag--;
+        
+        if (_theHUD.tag > kHUDBaseTag) {
+            if (![self isEmpty:msg]) {
+                _theHUD.label.text = msg;
+                _theHUD.mode = MBProgressHUDModeText;
+            }
+            else  {
+                _theHUD.label.text = nil;
+                _theHUD.mode = MBProgressHUDModeIndeterminate;
+            }
         }
         else  {
-            _theHUD.label.text = nil;
-            _theHUD.mode = MBProgressHUDModeIndeterminate;
+            [self hide:_theHUD message:msg delay:seconds completion:completion];
         }
-    }
-    else  {
-        [self hide:_theHUD message:msg delay:seconds completion:completion];
-    }
+    });
+}
+
+
+
+- (void)tipMessage:(NSString *)msg {
+    [self tipMessage:msg delay:2 inView:nil completion:nil];
+}
+
+- (void)tipMessage:(NSString *)msg delay:(CGFloat)seconds {
+    [self tipMessage:msg delay:seconds inView:nil completion:nil];
+}
+
+- (void)tipMessage:(NSString *)msg delay:(CGFloat)seconds completion:(void (^)())completion {
+    [self tipMessage:msg delay:seconds inView:nil completion:completion];
+}
+
+- (void)tipMessage:(NSString *)msg inView:(UIView *)view {
+    [self tipMessage:msg delay:2 inView:view completion:nil];
+}
+
+- (void)tipMessage:(NSString *)msg delay:(CGFloat)seconds inView:(UIView *)view completion:(void (^)())completion {
+    if ([self isEmpty:msg]) return;
+    
+    UIView *inView = view ? view : [UIApplication sharedApplication].keyWindow;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:inView animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = msg;
+        hud.label.textColor = [UIColor whiteColor];
+        hud.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        hud.userInteractionEnabled = NO;
+        
+        [hud hideAnimated:YES afterDelay:seconds];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
 }
 
 
@@ -130,12 +149,13 @@
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.animationType = MBProgressHUDAnimationZoomOut;
     hud.userInteractionEnabled = NO;
-    if (![self isEmpty:msg]) {
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.label.text = msg;
-    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (![self isEmpty:msg]) {
+            hud.mode = MBProgressHUDModeIndeterminate;
+            hud.label.text = msg;
+        }
+        
         [inView addSubview:hud];
         [hud showAnimated:YES];
         // 超时自动消失

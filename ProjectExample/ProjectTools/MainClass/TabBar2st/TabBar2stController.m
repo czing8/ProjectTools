@@ -18,6 +18,8 @@
 #import "VVideoPage.h"
 #import "VVideoPageController.h"
 
+#import "VHelpCenterController.h"
+
 #import "VUIHelper.h"
 
 @interface TabBar2stController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -40,7 +42,7 @@
 }
 
 - (void)initData {
-    _dataSource = @[@"广告页模块", @"视频启动页模块", @"引导页", @"web模块", @"历史记录模块"];
+    _dataSource = @[@"广告页模块", @"视频启动页模块", @"引导页", @"web模块", @"历史记录模块", @"帮助中心"];
 }
 
 - (void)configureViews {
@@ -116,6 +118,11 @@
             [self searchHistoryAction];
             break;
             
+        case 5:
+            [self showHelpCenterPage];
+            break;
+
+            
         default:
             break;
     }
@@ -150,7 +157,13 @@
 }
 
 - (void)showVideoPage {
-    VVideoPage * videoPage = [VVideoPage videoPageWithVideoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:@"qidong"ofType:@"mp4"]]];
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"qidong"ofType:@"mp4"];
+    if (filePath == nil) {
+        NSLog(@"路径不能为空");
+        return;
+    }
+    
+    VVideoPage * videoPage = [VVideoPage videoPageWithVideoURL:[NSURL fileURLWithPath:filePath]];
     [videoPage showInWindowWithAnimationType:VideoTransAnimationTypeNone clickHandler:^{
         NSLog(@"进入应用");
     }];
@@ -167,6 +180,12 @@
     VSearchViewController * stockSearchVC = [[VSearchViewController alloc] init];
     stockSearchVC.refreshStockListHandler = ^(){ };
     UINavigationController * navControl = [[UINavigationController alloc]initWithRootViewController:stockSearchVC];
+    [self presentViewController:navControl animated:YES completion:nil];
+}
+
+- (void)showHelpCenterPage {
+    VHelpCenterController * controller = [[VHelpCenterController alloc] init];
+    UINavigationController * navControl = [[UINavigationController alloc]initWithRootViewController:controller];
     [self presentViewController:navControl animated:YES completion:nil];
 }
 

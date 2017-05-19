@@ -9,8 +9,11 @@
 #import "TabBar3stController.h"
 #import "UIColor+VAdd.h"
 #import "VShowWeb1Controller.h"
+#import "VariousAnimationController.h"
 #import "VariousButtonController.h"
 #import "VariousSwitchController.h"
+#import "VScrollMenuShowController.h"
+#import "VScrollPageShowController.h"
 #import "VTitleCCell.h"
 
 #import "VUIHelper.h"
@@ -39,7 +42,7 @@
 
 
 - (void)initData {
-    _dataSource = @[@"Various Button", @"Various Switch"];
+    _dataSource = @[@"Various Animation", @"Various Button", @"Scroll Menu", @"Scroll Page", @"Various Switch"];
 }
 
 - (void)configureViews {
@@ -56,10 +59,10 @@
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = CGSizeMake(kSCREEN_SIZE.width/2.0-60, 40);
-        flowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+        flowLayout.itemSize = CGSizeMake(kSCREEN_SIZE.width/2.0-40, 40);
+        flowLayout.sectionInset = UIEdgeInsetsMake(20, 10, 20, 10);
         flowLayout.minimumLineSpacing = 20;  // 行间隔
-        flowLayout.minimumInteritemSpacing = 20;
+        flowLayout.minimumInteritemSpacing = 2;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
@@ -90,31 +93,59 @@
     
     switch (indexPath.row) {
         case 0:
-            [self pushButtonPageAction];
+            [self pushNextViewController:[VariousAnimationController class]];
             break;
             
         case 1:
-            [self pushSwitchPageAction];
+            [self pushNextViewController:[VariousButtonController class]];
             break;
             
+        case 2:
+            [self pushNextViewController:[VScrollMenuShowController class]];
+            break;
+            
+        case 3:
+            [self pushNextViewController:[VScrollPageShowController class]];
+            break;
+
+        case 4:
+            [self pushNextViewController:[VariousSwitchController class]];
+            break;
+
         default:
             break;
     }
 }
 
 #pragma mark - Actions
+//- (void)showAnimationPage {
+//    VariousAnimationController * controller = [[VariousAnimationController alloc] init];
+//    controller.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
+//}
+//
+//- (void)showButtonPage {
+//    VariousButtonController * buttonVC = [[VariousButtonController alloc] init];
+//    buttonVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:buttonVC animated:YES];
+//}
+//
+//- (void)showSwitchPage {
+//    VariousSwitchController * switchVC = [[VariousSwitchController alloc] init];
+//    switchVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:switchVC animated:YES];
+//}
 
-- (void)pushButtonPageAction {
-    VariousButtonController * buttonVC = [[VariousButtonController alloc] init];
-    buttonVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:buttonVC animated:YES];
+
+#pragma mark - helper
+
+- (void)pushNextViewController:(Class)class {
+    UIViewController * controller = [[class alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)pushSwitchPageAction {
-    VariousSwitchController * switchVC = [[VariousSwitchController alloc] init];
-    switchVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:switchVC animated:YES];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
